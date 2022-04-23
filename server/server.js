@@ -4,11 +4,16 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
+const apiRouter = require('./apiRouter');
 
 // HANDLE PARSING REQUEST BODY
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// ROUTES
+
+app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
     app.use('/build', express.static(path.join(__dirname, '../build')));
@@ -36,3 +41,5 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}...`);
 });
+
+module.exports = app;
