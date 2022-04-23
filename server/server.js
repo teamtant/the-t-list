@@ -21,6 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use((req, res) => res.status(404).send('This page does not exist!'));
 
 // global error handler
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     const defaultErr = {
       log: 'Express error handler caught unknown middleware error',
