@@ -9,22 +9,21 @@ router.get('/', apiController.getAllPins, (req, res) => {
     res.status(200).json(res.locals.allPins);
 });
 
-// // POST REQUEST FOR NEW PIN/LOCATION
-// router.post('/', apiController.createNewPin, apiController.getNewPin, (req, res) => {
+// POST REQUEST FOR NEW PIN/LOCATION
+// router.post('/', apiController.createNewPin, apiController.getPin, (req, res) => {
 //     res.status(200).json(res.locals.newPin);
 //     // res.sendStatus(200);
 // });
 
 // GET REQUEST FOR REVIEWS FOR ONE PIN/LOCATION
-router.get('/:lat/:long', apiController.getReviews, (req, res) => {
-    // res.status(200).json(res.locals.reviews);
-    res.sendStatus(200);
+router.get('/:id', apiController.getReviews, (req, res) => {
+    res.status(200).json(res.locals.reviews);
+    // res.sendStatus(200);
 });
 
 // POST REQUEST FOR REVIEWS TO A PIN/LOCATION
-router.post('/:lat/:long', apiController.addReview, (req, res) => {
+router.post('/postReview', apiController.createNewPin, apiController.getPin, apiController.addReview, (req, res) => {
     res.sendStatus(200);
-    // res.status(200).json(res.locals.newReview);
 });
 
 
