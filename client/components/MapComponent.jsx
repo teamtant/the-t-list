@@ -1,9 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import GoogleMapReact from 'google-map-react';
+import { InfoWindow } from 'google-maps-react';
+// import { Link, Navigate } from 'react-router-dom';
+import CreateReview from './CreateReview.jsx';
+
 
 const MapComponent = ({ children }) => {
 	const ref = React.useRef(null);
 	const [map, setMap] = React.useState();
+	const [coords, setCoords] = React.useState();
+
+	const infoWindow = new google.maps.InfoWindow({
+		content: 'To leave a review at this location, click the "Post a review" button below!'
+	})
+
+	const [review, setReview] = React.useState(false)
 
 	React.useEffect(() => {
 		if (ref.current && !map) {
@@ -19,15 +30,29 @@ const MapComponent = ({ children }) => {
 			map.addListener('click', (mapsMouseEvent) => {
 				const mapClickLat = mapsMouseEvent.latLng.lat();
 				const mapClickLng = mapsMouseEvent.latLng.lng();
-				console.log(mapClickLat, mapClickLng);
+				// console.log(mapClickLat, mapClickLng);
+				const marker = new google.maps.Marker({
+					position: {lat: mapClickLat, lng: mapClickLng},
+					map: map
+				})
+				infoWindow.open({
+					anchor: marker,
+					map: map,
+					shouldFocus: true,
+				});
+				setCoords([mapClickLat, mapClickLng])
 			});
 		}
 	}, [ref, map]);
 
 	const style = {
-		width: '500px',
-		height: '500px',
+		width: '1000px',
+		height: '800px',
 	};
+	const reviewForm = []
+	if (review) {
+		reviewForm.push(<CreateReview coords={coords} />)
+	}
 
 	return (
 		<>
@@ -38,21 +63,16 @@ const MapComponent = ({ children }) => {
 					return React.cloneElement(child, { map });
 				}
 			})}
+			<button
+			className='review-btn'
+			style={{ width: '200px', height: '30px' }}
+			onClick = {()=> setReview(true)}
+		>
+			Post a Review
+		</button>
+			{reviewForm}
 		</>
 	);
 };
 
 export default MapComponent;
-
-// <div className='Map' style={{ height: '100vh', width: '100%' }}>
-// 	<GoogleMapReact>
-// 		bootstrapURLKeys={{ key: 'AIzaSyAJdQ - ID6_clf4WGWk5F8bt3CnNMlHCXRs' }}
-// 		defaultCenter:
-// 		{{
-// 			lat: 37.42216,
-// 			lng: -122.08427,
-// 		}}
-// 		defaultZoom: {11}
-// 	</GoogleMapReact>
-// </div>
-// <h1>hello world</h1>
