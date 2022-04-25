@@ -15,11 +15,13 @@ const MapContainer = () => {
 	const [coords, setCoords] = React.useState();
 	
 	React.useEffect(() => {
-		fetch('/api')
-		  .then(resp => resp.json())
-		  .then(data => {
-			  setMarkers(data)
-		  })
+		if (!markers.length) {
+			fetch('/api')
+			  .then(resp => resp.json())
+			  .then(data => {
+				  setMarkers(data)
+			  })
+		}
 	}, [])
 
 	const changeCoords = (lat, lng) => {

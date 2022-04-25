@@ -5,7 +5,7 @@ apiController.getAllPins = (req, res, next) => {
   const getPinsQuery = 'SELECT * FROM location';
   db.query(getPinsQuery)
     .then(result => {
-        console.log(result.rows);
+        // console.log(result.rows);
         res.locals.allPins = result.rows;
         return next();
     })
@@ -37,9 +37,10 @@ apiController.createNewPin = (req, res, next) => {
     //     })
     // }
 
-    if (location_id !== 'null') {
-        console.log(typeof location_id)
-        console.log('location id is not null')
+    if (location_id !== null) {
+        // console.log(typeof location_id)
+        // console.log(location_id)
+        // console.log('location id is not null')
         return next();
     }
 
@@ -65,7 +66,7 @@ apiController.getPin = (req, res, next) => {
     // const getNewPinQuery = `SELECT * FROM location WHERE latitude=${lat} AND longitude=${long}`;
     db.query(text, values)
       .then(result => {
-          console.log(result.rows);
+          // console.log(result.rows);
           res.locals.newPin = result.rows[0];
           // to get reviews: 
           res.locals.locationID = result.rows[0]._id;
@@ -84,7 +85,7 @@ apiController.getReviews = (req, res, next) => {
     const getReviewsQuery = `SELECT * FROM reviews WHERE location_id=${locationID}`;
     db.query(getReviewsQuery)
       .then(result => {
-        console.log(result.rows);
+        // console.log(result.rows);
         res.locals.reviews = result.rows;
         return next();
       })

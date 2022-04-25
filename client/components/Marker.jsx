@@ -1,9 +1,9 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import React from 'react';
 import { InfoWindow } from 'google-maps-react';
 
 const Marker = (options) => {
 	const [marker, setMarker] = React.useState();
-	const [reviews, setReviews] = React.useState();
 
 
 	React.useEffect(() => {
@@ -26,44 +26,42 @@ const Marker = (options) => {
 				marker.changeCoords([marker.position.lat(), marker.position.lng()], marker.id)
 
 				fetch('/api/' + marker.id)
-				  .then(response => response.json())
-				  .then(data => {
+				    .then(response => response.json())
+			        .then(data => {
 
-					  const starObj = {
-						  1: '✩',
-						  2: '✩✩',
-						  3: '✩✩✩',
-						  4: '✩✩✩✩',
-						  5: '✩✩✩✩✩'
-					  }
-	  
-					  const contentString = 
-					  `<div>
-						  <h1>` + marker.clinicName + `</h1>
-						  <h3>1</h3>
-						  <ul>
-							  
-							  <li><strong>Rating:</strong>` + starObj[3] + ` /*reviews[i].rating*/</li>
-							  <li><strong>Service Type:</strong> service /*reviews[i].rating*/</li>
-							  <li><strong>Cost:</strong> cost /*reviews[i].rating*/</li>
-							  <li><strong>Review:</strong> review /*reviews[i].rating*/</li>
-						  </ul>
-					  </div>`
-	  
-					  console.log('we are logging the marker clinic ' + marker.clinicName)
-					  const infoWindow = new google.maps.InfoWindow(
-						  {content: contentString}
-					  );
-	  
-	  
-					  infoWindow.open({
-						  anchor: marker,
-						  map: options.map,
-						  shouldFocus: true,
-					  });
-				  })
-				  
-					
+						console.log(data)
+						let reviews = data[0];
+
+						const starObj = {
+							1: '✩',
+							2: '✩✩',
+							3: '✩✩✩',
+							4: '✩✩✩✩',
+							5: '✩✩✩✩✩'
+						}
+		
+						const contentString = 
+						`<div>
+							<h1>` + marker.clinicName + `</h1>
+							<ul>
+								<li><strong>Rating:</strong>` + starObj[String(reviews.rating)] + `</li>
+								<li><strong>Service Type:</strong>` + reviews.service_type +`</li>
+								<li><strong>Cost:</strong>` + reviews.cost + `</li>
+								<li><strong>Review:</strong>` + reviews.review + `</li>
+							</ul>
+						</div>`
+		
+						const infoWindow = new google.maps.InfoWindow(
+							{content: contentString}
+						);
+		
+		
+						infoWindow.open({
+							anchor: marker,
+							map: options.map,
+							shouldFocus: true,
+						});
+					})	
 			});
 		}
 	}, [marker, options]);

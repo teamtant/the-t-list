@@ -19,7 +19,7 @@ const MapComponent = ({ changeCoords, children, coords }) => {
 		if (ref.current && !map) {
 			setMap(
 				new window.google.maps.Map(ref.current, {
-					center: { lat: 13.5, lng: 44 },
+					center: { lat: 40.734417940592024, lng: -74.0021626},
 					zoom: 12,
 				})
 			);
