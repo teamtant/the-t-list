@@ -5,10 +5,9 @@ import { InfoWindow } from 'google-maps-react';
 import CreateReview from './CreateReview.jsx';
 
 
-const MapComponent = ({ children }) => {
+const MapComponent = ({ changeCoords, children, coords }) => {
 	const ref = React.useRef(null);
 	const [map, setMap] = React.useState();
-	const [coords, setCoords] = React.useState();
 
 	const infoWindow = new google.maps.InfoWindow({
 		content: 'To leave a review at this location, click the "Post a review" button below!'
@@ -20,7 +19,7 @@ const MapComponent = ({ children }) => {
 		if (ref.current && !map) {
 			setMap(
 				new window.google.maps.Map(ref.current, {
-					center: { lat: 40.7338, lng: -74.0022 },
+					center: { lat: 40.734417940592024, lng: -74.0021626},
 					zoom: 12,
 				})
 			);
@@ -40,7 +39,7 @@ const MapComponent = ({ children }) => {
 					map: map,
 					shouldFocus: true,
 				});
-				setCoords([mapClickLat, mapClickLng])
+				changeCoords([mapClickLat, mapClickLng], null)
 			});
 		}
 	}, [ref, map]);
@@ -59,7 +58,7 @@ const MapComponent = ({ children }) => {
 			<div ref={ref} style={style} />
 			{React.Children.map(children, (child) => {
 				if (React.isValidElement(child)) {
-					// set the map prop on the child component
+				
 					return React.cloneElement(child, { map });
 				}
 			})}

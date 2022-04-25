@@ -11,30 +11,45 @@ const MapContainer = () => {
 		return <h1>{status}</h1>;
 	};
 
-	// const onMarkerClick = (event) => {
-	// 	console.log('I was clicked', event);
-	// 	return;
-	// };
+	const [markers, setMarkers] = React.useState([])
+	const [coords, setCoords] = React.useState();
+	
+	React.useEffect(() => {
+		if (!markers.length) {
+			fetch('/api')
+			  .then(resp => resp.json())
+			  .then(data => {
+				  setMarkers(data)
+			  })
+		}
+	}, [])
 
-	// const markers [];
+	const changeCoords = (lat, lng) => {
+		setCoords([lat, lng])
+	}
 
-	// const markerItems = markers.map (marker => {
-	// return <Marker key = position = coords
-	// })
-	// loop here and create array of markers
-
+	const markersArray = markers.map(marker => {
+	return (
+	<Marker 
+		changeCoords= {changeCoords}
+		key = {marker._id}
+		id = {marker._id}
+		clinicName = {marker.clinic}
+		position = {{
+			lat: Number(marker.latitude), 
+			lng: Number(marker.longitude),
+		}}
+		/>
+		)
+	})
 	return (
 		<>
 		<Wrapper apiKey={'AIzaSyAJdQ-ID6_clf4WGWk5F8bt3CnNMlHCXRs'} render={render}>
-			<MapComponent>
-				<Marker
-					// reviewText = {data}
-					position={{
-						lat: 40.69743317190694,
-						lng: -73.93473004589146,
-					}}
-					// {markerItems}
-				/>
+			<MapComponent
+				changeCoords = {changeCoords}
+				coords = {coords}
+			>
+				{markersArray}
 			</MapComponent>
 		</Wrapper>
 		</>
