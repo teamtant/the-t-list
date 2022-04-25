@@ -1,19 +1,30 @@
+const express = require('express');
+const router = express.Router();
+
 // IMPORT CONTROLLERS
 const apiController = require('./apiController');
 
 // GET ALL PINS / LOCATIONS
-app.get('/', apiController.getAllPins, (req, res) => {
+router.get('/', apiController.getAllPins, (req, res) => {
     res.status(200).json(res.locals.allPins);
 });
 
-// GET REQUEST FOR ONE PIN/LOCATION
-app.get('/?id', apiController.getReviews, (req, res) => {
-    res.status(200).json(res.locals.reviews);
+// // POST REQUEST FOR NEW PIN/LOCATION
+// router.post('/', apiController.createNewPin, apiController.getNewPin, (req, res) => {
+//     res.status(200).json(res.locals.newPin);
+//     // res.sendStatus(200);
+// });
+
+// GET REQUEST FOR REVIEWS FOR ONE PIN/LOCATION
+router.get('/:lat/:long', apiController.getReviews, (req, res) => {
+    // res.status(200).json(res.locals.reviews);
+    res.sendStatus(200);
 });
 
-// POST REQUEST TO A PIN/LOCATION
-app.post('/', apiController.addReview, (req, res) => {
-    res.status(200).json(res.locals.newReview);
+// POST REQUEST FOR REVIEWS TO A PIN/LOCATION
+router.post('/:lat/:long', apiController.addReview, (req, res) => {
+    res.sendStatus(200);
+    // res.status(200).json(res.locals.newReview);
 });
 
 
@@ -30,4 +41,4 @@ app.post('/', apiController.addReview, (req, res) => {
             // return next()
 
 // EXPORT APIROUTER
-module.exports = apiRouter; 
+module.exports = router; 
