@@ -11,13 +11,9 @@ class App extends Component {
 		return (
 			<div className='main-container'>
 				<img src={logo} className='logo-img'></img>
-			{/* <Router>
-				<Routes>
-					<Route path='/' element={<MapContainer />} />
-					<Route path='/review' element={<CreateReview />} /> */}
+	
 				<MapContainer/>
-				{/* </Routes>
-			</Router> */}
+		
 			</div>
 		);
 	}

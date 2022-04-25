@@ -3,19 +3,13 @@ import { InfoWindow } from 'google-maps-react';
 
 const Marker = (options) => {
 	const [marker, setMarker] = React.useState();
-	// const [coords, setCoords] = React.useState()
 
-	// loop through fetched data here
-	// const infoWindow = new google.maps.InfoWindow(
-	// 	// {content: options.clinicName}
-	// );
 
 	React.useEffect(() => {
 		if (!marker) {
 			setMarker(new google.maps.Marker());
 		}
 
-		// remove marker from map on unmount
 		return () => {
 			if (marker) {
 				marker.setMap(null);
@@ -28,12 +22,11 @@ const Marker = (options) => {
 			marker.setOptions(options);
 
 			marker.addListener('click', (options) => {
-				// setCoords([marker.position.lat, marker.position.lng])
-				// setMarkerCoords([marker.position, marker.key])
-				// let reviews = await fetch('/api/' + options.key)
-				// reviews = reviews.json()
-				// console.log(reviews)
-				console.log('this is the marker:', marker)
+				marker.changeCoords([marker.position.lat(), marker.position.lng()], marker.id)
+				
+				fetch('/api/' + marker.id)
+				  .then(response => response.json())
+				  .then(data => console.log(data))
 
 				const starObj = {
 					1: '✩',
@@ -63,22 +56,14 @@ const Marker = (options) => {
 
 
 				infoWindow.open({
-					// content: String(marker.clinicName),
 					anchor: marker,
 					map: options.map,
 					shouldFocus: true,
 				});
 			});
-			// console.log('this is the marker log'+ options); 
 		}
 	}, [marker, options]);
 	return null;
 };
 
 export default Marker;
-
-// "location_id" bigint NOT NULL,
-// "service_type" varchar NOT NULL,
-// "cost" varchar NOT NULL,
-// "rating" integer NOT NULL,
-// "review" varchar NOT NULL,

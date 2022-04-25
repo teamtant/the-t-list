@@ -8,13 +8,6 @@ import App from './App.jsx';
 
 import styles from './scss/styles.scss';
 
-// render(
-//     // <BrowserRouter>
-//         <App />,
-//     /*{/* </BrowserRouter>, *//*}*/
-//   document.getElementById('root')
-// );
-
 ReactDOM.render(
 	<React.StrictMode>
 		<App />
