@@ -1,0 +1,15 @@
+
+.main-container {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}

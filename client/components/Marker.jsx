@@ -4,6 +4,7 @@ import { InfoWindow } from 'google-maps-react';
 const Marker = (options) => {
 	const [marker, setMarker] = React.useState();
 
+	// loop through fetched data here
 	const infoWindow = new google.maps.InfoWindow({
 		content: 'Review Data',
 	});
