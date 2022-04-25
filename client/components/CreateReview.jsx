@@ -1,16 +1,53 @@
-import React, {useState} from 'react'
+import React, {useState, useInput} from 'react'
 
 const CreateReview = ({ coords }) => {
 
+    console.log('coords', coords)
     const handleClick = () => {
-        console.log('hello')
+
+        
+       
+       
+        // const reqBody = {
+        //     clinic,
+        //     service_type,
+        //     cost,
+        //     rating,
+        //     review,
+        //     latitude: markerCoords[0].lat,
+        //     longitude: markerCoords[0].lng,
+        //     locationID: markerCoords[1],
+        // }
+        
+        // fetch('/api/postReview', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'Application/JSON'
+        //     },
+        //     body: JSON.stringify(reqBody),
+        // })
+        // .then((resp) => resp.json())
+		// 	.then((data) =>
+		// 		console.log('this is logging in post fetch request' + data)
+		// 	)
     }
-    console.log(coords)
+
+    // const useInput = (init) => {
+    //     const [value, setValue] = useState(init);
+    //     const onChange = (e) => {
+    //         setValue(e.target.value);
+    //     };
+    //     return [value, onChange];
+    // };
+
+    // const [clinic, clinicOnChange] = useInput('')
+
+    // console.log(coords)
   return (
     <div className='review-form'>
         <h1>Create Review</h1>
         <label>Clinic:</label>
-        <input type='text' placeholder='Enter clinic'></input>
+        <input /*value={clinic} onChange={clinicOnChange}*/ type='text' placeholder='Enter clinic'></input>
         <label>Type of Service:</label>
         <input type='text' placeholder='Enter type of service'></input>
         <label>Cost:</label>
@@ -18,7 +55,7 @@ const CreateReview = ({ coords }) => {
             <option value='$'>$0 - $1,000</option>
             <option value='$$'>$1,000 - $5,000</option>
             <option value='$$$'>$5,000 - $10,000</option>
-            <option value='$$$'>$10,000+</option>
+            <option value='$$$$'>$10,000+</option>
         </select>
         <label>Rating:</label>
         <select>

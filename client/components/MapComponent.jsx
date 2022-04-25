@@ -20,7 +20,7 @@ const MapComponent = ({ children }) => {
 		if (ref.current && !map) {
 			setMap(
 				new window.google.maps.Map(ref.current, {
-					center: { lat: 40.7338, lng: -74.0022 },
+					center: { lat: 13.5, lng: 44 },
 					zoom: 12,
 				})
 			);
@@ -30,7 +30,7 @@ const MapComponent = ({ children }) => {
 			map.addListener('click', (mapsMouseEvent) => {
 				const mapClickLat = mapsMouseEvent.latLng.lat();
 				const mapClickLng = mapsMouseEvent.latLng.lng();
-				// console.log(mapClickLat, mapClickLng);
+				console.log(mapClickLat, mapClickLng);
 				const marker = new google.maps.Marker({
 					position: {lat: mapClickLat, lng: mapClickLng},
 					map: map
