@@ -1,13 +1,13 @@
 <div align="center">
 
-![Logo](./images/app-logo-3.png)
+![Logo](./Images/app-logo-3.png)
 
 # The T List
 A visual map spotlighting crowd-sourced reviews to improve access to trans-affirming care through aggregated data. Users can see reviews at an existing location (visually marked by a pin). If reviews don't exist yet at a location, users can add a new review by placing a pin on the map and then submitting the review form below. 
 
 </div>
 
-![The T-List](./images/the-t-list.png)
+![The T-List](./Images/the-t-list.png)
 
 # Built With
 - [React.js](https://reactjs.org/)
