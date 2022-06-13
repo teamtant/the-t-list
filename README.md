@@ -3,7 +3,7 @@
 ![Logo](./Images/app-logo-3.png)
 
 # The T List
-A visual map spotlighting crowd-sourced reviews to improve access to trans-affirming care through aggregated data. Users can read reviews at an existing location (visually marked by a pin). If reviews don't exist at a location yet, users can add a new review there by placing a pin on the map and then submitting the review form below. 
+A visual map spotlighting crowd-sourced reviews to improve access to trans-affirming care through aggregated data. Users can read reviews in their area marked by a location pin. If reviews don't exist at a location yet, users can add a new review there by placing a pin on the map, and then posting to the review form below. 
 
 </div>
 
